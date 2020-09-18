@@ -1,0 +1,15 @@
+@startuml
+Main -> funcion1 :Llamada 1
+activate funcion1
+funcion1 -> funcion2 :Llamada 2
+activate funcion2
+funcion2 -> funcion3 :Llamada 3
+activate funcion3
+deactivate funcion3
+funcion2 <-- funcion3 : Respuesta 3
+deactivate funcion2
+funcion1 <-- funcion2 : Respuesta 2
+deactivate funcion1
+Main <-- funcion1 : Respuesta 1
+deactivate Main
+@enduml
