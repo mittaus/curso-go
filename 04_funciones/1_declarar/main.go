@@ -21,6 +21,12 @@ func resta(n1, n2 int) (r int) {
 	return
 }
 
+// versión 3
+func concatenar(n1, n2 int, n3 string) (r string) {
+	r = fmt.Sprintf("%d.%v - %v", n1, n2, n3)
+	return
+}
+
 func main() {
 
 	//declara funciones
@@ -29,7 +35,8 @@ func main() {
 
 	fmt.Println(suma(25, 66))
 	fmt.Println(resta(88, 66))
-
+	resultado := concatenar(1, 2, "mundo")
+	fmt.Println(resultado)
 	//package math
 	//func Sin(x float64) float64 // implemented in assembly language
 }
