@@ -2,7 +2,22 @@ package main
 
 import (
 	"fmt"
+	"math"
 )
+
+func pow(x, n, lim float64) float64 {
+	if v := math.Pow(x, n); v < lim {
+		return v
+	} else {
+		fmt.Println(v)
+		fmt.Printf("%g >= %g\n", v, lim)
+		// return v
+	}
+
+	// No se puede usar la variable aquí
+	// fmt.Println(v)
+	return lim
+}
 
 func main() {
 
@@ -21,6 +36,11 @@ func main() {
 	} else {
 		fmt.Println("a es igual 6")
 	}
+
+	fmt.Println(
+		pow(3, 2, 10),
+		pow(3, 3, 20),
+	)
 
 	fmt.Println("Fin del programa")
 
