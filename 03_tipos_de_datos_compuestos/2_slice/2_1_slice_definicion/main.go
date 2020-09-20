@@ -5,6 +5,10 @@ import (
 	"reflect"
 )
 
+func printSlice(s []int) {
+	fmt.Printf("len=%d cap=%d %v\n", len(s), cap(s), s)
+}
+
 func main() {
 	//Declarar un array y slice literal
 	numeros := [6]int{2, 3, 5, 7, 11, 13}
@@ -73,4 +77,18 @@ func main() {
 	fmt.Println("Cap(a)", cap(a))
 	fmt.Println("Cap(b)", cap(b))
 
+	slice1 := []int{2, 3, 5, 7, 11, 13}
+	printSlice(slice1)
+
+	// Slice de slice con tamaño cero.
+	slice1 = slice1[:0]
+	printSlice(slice1)
+
+	// Extender la longitud
+	slice1 = slice1[:4]
+	printSlice(slice1)
+
+	// Eliminar los 2 primeros valores.
+	slice1 = slice1[2:]
+	printSlice(slice1)
 }
