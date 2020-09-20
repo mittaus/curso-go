@@ -2,11 +2,29 @@ package main
 
 import (
 	"fmt"
+	"strconv"
 )
 
 func main() {
 
 	//Maps
+
+	var numero int
+	fmt.Println(numero)
+	// if numero == nil {
+	// 	fmt.Println("Es nulo")
+	// }
+
+	var miMap map[string]string //declaramos una variable Map
+	fmt.Println(miMap)
+
+	if miMap == nil {
+		fmt.Println("Es nulo")
+		// miMap["uno"] = strconv.Itoa(1) //Error al agregar porque está nil
+
+	} else {
+		miMap["uno"] = strconv.Itoa(1)
+	}
 
 	//Declarar Maps 1
 	x := make(map[string]string)
