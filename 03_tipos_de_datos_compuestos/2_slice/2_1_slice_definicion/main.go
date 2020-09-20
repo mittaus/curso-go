@@ -2,9 +2,27 @@ package main
 
 import (
 	"fmt"
+	"reflect"
 )
 
 func main() {
+	//Declarar un array y slice literal
+	numeros := [6]int{2, 3, 5, 7, 11, 13}
+	nombres := []string{
+		"John",
+		"Paul",
+		"George",
+		"Ringo",
+	}
+
+	rType1 := reflect.TypeOf(numeros)
+	rKind1 := rType1.Kind()
+
+	rType2 := reflect.TypeOf(nombres)
+	rKind2 := rType2.Kind()
+
+	fmt.Println(rType1, rKind1)
+	fmt.Println(rType2, rKind2)
 
 	//Slices
 
