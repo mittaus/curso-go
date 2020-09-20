@@ -27,6 +27,21 @@ func enviarPing(c chan string) {
 }
 func main() {
 
+	// I. A send to a nil channel blocks forever
+	var c1 chan string
+	c1 <- "Hello, World!"
+	// fatal error: all goroutines are asleep - deadlock!
+
+	// II. A receive from a nil channel blocks forever
+	var c2 chan string
+	fmt.Println(<-c2)
+	// fatal error: all goroutines are asleep - deadlock!
+
+	// III. A send to a closed channel panics
+	var c3 = make(chan string, 1)
+	c3 <- "Hello, World!"
+	close(c3)
+
 	// Creamos un canal hola mundoo
 	ch := make(chan string)
 
