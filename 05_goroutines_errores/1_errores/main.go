@@ -65,6 +65,18 @@ func baneado(usuario string) (err error) {
 // 	return nil
 // }
 
+// Hola retorna el saludo con el nombre de la persona
+func Hola(nombre string) (string, error) {
+	// Si no se dio paso el nombre, devuelve un error con un mensaje.
+	if nombre == "" {
+		return "", errors.New("nombre vacío")
+	}
+
+	// Si se paso el nombre, retorna el nombre embebido en el saludo
+	mensaje := fmt.Sprintf("Hola, %v. bienvenido!", nombre)
+	return mensaje, nil
+}
+
 func checkError(err error) {
 	if err != nil {
 		fmt.Println("Error: ", err)
@@ -113,4 +125,13 @@ func main() {
 	// err = baneado("pololo")
 	// checkError(err)
 
+	// solicitar un saludo.
+	mensaje, err := Hola("")
+	// If un error ha sido retornado, imprimir en consola y finalizar el programa
+	if err != nil {
+		panic(err)
+	}
+
+	// Si no se ha retornado un error, imprimir el saludo en la consola
+	fmt.Println(mensaje)
 }
