@@ -4,6 +4,12 @@ import (
 	"fmt"
 )
 
+//Usuario ...
+type Usuario interface {
+	Nombre() string
+	Email() string
+}
+
 //Persona ...
 type Persona struct {
 	nombre string
@@ -71,12 +77,6 @@ func PresentarseM(m Moderador) {
 	fmt.Println("Email: ", m.Email())
 }
 
-//Usuario ...
-type Usuario interface {
-	Nombre() string
-	Email() string
-}
-
 func describe(i interface{}) {
 	fmt.Printf("(%v, %T)\n", i, i)
 }
@@ -113,31 +113,31 @@ func main() {
 	// fmt.Println("i: ", i.Email())
 	// fmt.Println("i: ", i)
 
-	// //Interfaz vacio
-	// var i interface{}
-	// describe(i)
+	//Interfaz vacio
+	var i interface{}
+	describe(i)
 
-	// i = 42
-	// describe(i)
+	i = 42
+	describe(i)
 
-	// i = "Hola"
-	// describe(i)
+	i = "Hola"
+	describe(i)
 
-	// // Type assertions
-	// s := i.(string)
-	// fmt.Println(s)
+	// Type assertions
+	s := i.(string)
+	fmt.Println(s)
 
-	// s, ok := i.(string)
-	// fmt.Println(s, ok)
+	s, ok := i.(string)
+	fmt.Println(s, ok)
 
-	// f, ok := i.(float64)
-	// fmt.Println(f, ok)
+	f, ok := i.(float64)
+	fmt.Println(f, ok)
 
 	// f = i.(float64) // panic
 	// fmt.Println(f)
 
-	// // Type switches
-	// do(21)
-	// do("hello")
-	// do(true)
+	// Type switches
+	do(21)
+	do("hello")
+	do(true)
 }
