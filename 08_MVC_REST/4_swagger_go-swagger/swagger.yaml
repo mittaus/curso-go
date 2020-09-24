@@ -1,0 +1,129 @@
+basePath: /
+consumes:
+- application/json
+definitions:
+  Autentificacion:
+    description: Autentificacion nombre de usuario y contraseña
+    properties:
+      password:
+        type: string
+        x-go-name: Password
+      username:
+        type: string
+        x-go-name: Username
+    type: object
+    x-go-package: github.com/spsa/swagger-automation/api
+  FooBarRequest:
+    properties:
+      bar:
+        items:
+          format: int64
+          type: integer
+        type: array
+        x-go-name: Bar
+      foo:
+        type: string
+        x-go-name: Foo
+    title: FooBarRequest represents body of FooBar request.
+    type: object
+    x-go-package: github.com/spsa/swagger-automation/api
+  FooBarResponse:
+    properties:
+      baz:
+        properties:
+          prop:
+            type: string
+            x-go-name: Prop
+        type: object
+        x-go-name: Baz
+    title: FooBarResponse represents body of FooBar response.
+    type: object
+    x-go-package: github.com/spsa/swagger-automation/api
+  Usuario:
+    description: Usuario datos de usuario
+    properties:
+      apellidos:
+        type: string
+        x-go-name: Apellidos
+      id:
+        type: string
+        x-go-name: ID
+      nombres:
+        type: string
+        x-go-name: Nombres
+      token:
+        type: string
+        x-go-name: Token
+    type: object
+    x-go-package: github.com/spsa/swagger-automation/api
+host: alguna-url.com
+info:
+  description: Proyecto que expone interfaces para la comunicación a través del protocolo HTTP.
+  title: Nombre del proyecto API
+  version: 1.0.0
+paths:
+  /foo:
+    post:
+      description: Inicio de sesión por usuario y contraseña
+      operationId: idOfFoobarEndpoint
+      parameters:
+      - description: Parámetros para iniciar sesión, en request body
+        in: body
+        name: Body
+        schema:
+          $ref: '#/definitions/FooBarRequest'
+      responses:
+        "200":
+          $ref: '#/responses/foobarResponse'
+      tags:
+      - otros-tag
+  /info/{id}:
+    get:
+      description: Información de usuario
+      operationId: xyz_1
+      parameters:
+      - in: path
+        name: id
+        required: true
+        type: string
+        x-go-name: ID
+      responses:
+        "200":
+          $ref: '#/responses/usuario'
+      tags:
+      - seguridad-tag
+  /login:
+    post:
+      description: Inicio de sesión
+      operationId: xyz_2
+      parameters:
+      - in: body
+        name: Body
+        schema:
+          $ref: '#/definitions/Autentificacion'
+      responses:
+        "200":
+          $ref: '#/responses/usuario'
+      tags:
+      - seguridad-tag
+produces:
+- application/json
+responses:
+  foobarResponse:
+    description: Respuesta cuando el inicio de sesión es satisfactorio, en response
+    schema:
+      $ref: '#/definitions/FooBarResponse'
+  usuario:
+    description: Respuesta ok
+    headers:
+      id:
+        description: in:path
+        type: string
+    schema:
+      $ref: '#/definitions/Usuario'
+schemes:
+- http
+securityDefinitions:
+  basic:
+    type: basic
+swagger: "2.0"
