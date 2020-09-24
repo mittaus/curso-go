@@ -1,0 +1,12 @@
+{{define "prepago"}}
+Formulario de usuario sin contrato: prepago
+{{range .}}
+	{{if .Edad}}
+		Nombre: {{.Nombre}} 
+        Edad: {{.Edad}}
+        Operador: {{.Operador}}
+	{{end}}
+{{end}}
+
+Is basically just a router that simplifies route definitions as well as things like adding middleware. 
+{{end}}

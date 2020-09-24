@@ -1,0 +1,12 @@
+{{define "postpago"}}
+Formulario de usuario con contrato de 12 meses: postpago
+{{range .}}
+	{{if .Edad}}
+		Nombre: {{.Nombre}} 
+        Edad: {{.Edad}}
+        Operador: {{.Operador}}
+	{{end}}
+{{end}}`
+
+Is basically just a router that simplifies route definitions as well as things like adding middleware. 
+{{end}}
