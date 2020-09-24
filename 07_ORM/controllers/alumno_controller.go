@@ -56,7 +56,7 @@ func GetAlumnos(w http.ResponseWriter, r *http.Request) {
 		defer sqlDB.Close()
 	}
 
-	db.Find(&alumnos)
+	db.Find(&alumnos) //SELECT * FROM Alumno
 	j, _ := json.Marshal(alumnos)
 	utils.SendResponse(w, http.StatusOK, j)
 }

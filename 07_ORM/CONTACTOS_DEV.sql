@@ -52,19 +52,16 @@ INSERT INTO contacts(nombre,edad,telefono, direccion, email, descripcion)
 values 
 ('Julian Rengifo',70,'029929292','Av Pucalpa','julian@hotmail.com','Cliente');
 
--- CREATE TABLE books(
---     id INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
---     title VARCHAR(100) NOT NULL,
---     author VARCHAR(50) NOT NULL,
---     year CHAR(4) NOt NULL
--- );
--- GO
 
--- INSERT INTO books(title, author, year) VALUES
--- ('Libro 1', 'Joel', 2020),
--- ('Libro 2', 'Chris', 1990),
--- ('Libro 3', 'Dante', 1980),
--- ('Libro 4', 'Viviana', 1950),
--- ('Libro 5', 'Lean', 2001);
-
--- SELECT * FROM Books
+CREATE PROC spu_modulosSearch(
+    @texto VARCHAR(50),
+    @delelado_id INT
+)
+AS
+BEGIN
+    SELECT M.*, A.* FROM Modulo M
+    INNER JOIN alumno_modulos AM ON AM.modulo_codigo = M.codigo
+    INNER JOIN Alumno A ON A.Id = AM.alumno_id
+    WHERE  M.Nombre LIKE '%' + @texto + '%'
+END
+GO
