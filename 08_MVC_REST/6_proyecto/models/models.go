@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"log"
 
-	"gorm.io/driver/sqlserver"
+	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 	"gorm.io/gorm/schema"
 
@@ -33,14 +33,25 @@ type Model struct {
 
 // Setup initializes the database instance
 func Setup() {
-	// setting.DatabaseSetting.Type
-	dsn := fmt.Sprintf("sqlserver://%s:%s@%s?database=%s",
+
+	// dsn := fmt.Sprintf("sqlserver://%s:%s@%s?database=%s",
+	// 	setting.DatabaseSetting.User,
+	// 	setting.DatabaseSetting.Password,
+	// 	setting.DatabaseSetting.Host,
+	// 	setting.DatabaseSetting.Name)
+
+	// db, err = gorm.Open(sqlserver.Open(dsn), &gorm.Config{
+	// 	NamingStrategy: schema.NamingStrategy{TablePrefix: setting.DatabaseSetting.TablePrefix, SingularTable: true},
+	// })
+
+	dsn := fmt.Sprintf("%s:%s@tcp(%s)/%s?charset=utf8&parseTime=True&loc=Local",
 		setting.DatabaseSetting.User,
 		setting.DatabaseSetting.Password,
 		setting.DatabaseSetting.Host,
 		setting.DatabaseSetting.Name)
+
 	var err error
-	db, err = gorm.Open(sqlserver.Open(dsn), &gorm.Config{
+	db, err = gorm.Open(mysql.Open(dsn), &gorm.Config{
 		NamingStrategy: schema.NamingStrategy{TablePrefix: setting.DatabaseSetting.TablePrefix, SingularTable: true},
 	})
 
