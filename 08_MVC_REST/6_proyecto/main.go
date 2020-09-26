@@ -11,8 +11,8 @@ import (
 	"github.com/EDDYCJY/go-gin-example/pkg/gredis"
 	"github.com/EDDYCJY/go-gin-example/pkg/logging"
 	"github.com/EDDYCJY/go-gin-example/pkg/setting"
-	"github.com/EDDYCJY/go-gin-example/routers"
 	"github.com/EDDYCJY/go-gin-example/pkg/util"
+	"github.com/EDDYCJY/go-gin-example/routers"
 )
 
 func init() {
@@ -29,6 +29,9 @@ func init() {
 // @termsOfService https://github.com/EDDYCJY/go-gin-example
 // @license.name MIT
 // @license.url https://github.com/EDDYCJY/go-gin-example/blob/master/LICENSE
+// @securityDefinitions.apikey ApiKeyAuth
+// @in header
+// @name token
 func main() {
 	gin.SetMode(setting.ServerSetting.RunMode)
 

@@ -17,6 +17,8 @@ import (
 	"github.com/EDDYCJY/go-gin-example/service/tag_service"
 )
 
+// @Tags Article
+// @Security ApiKeyAuth
 // @Summary Get a single article
 // @Produce  json
 // @Param id path int true "ID"
@@ -55,6 +57,8 @@ func GetArticle(c *gin.Context) {
 	appG.Response(http.StatusOK, e.SUCCESS, article)
 }
 
+// @Tags Article
+// @Security ApiKeyAuth
 // @Summary Get multiple articles
 // @Produce  json
 // @Param tag_id body int false "TagID"
@@ -121,14 +125,12 @@ type AddArticleForm struct {
 	State         int    `json:"state" valid:"Range(0,1)"`
 }
 
+// @Tags Article
+// @Security ApiKeyAuth
 // @Summary Add article
+// @Accept  json
 // @Produce  json
-// @Param tag_id body int true "TagID"
-// @Param title body string true "Title"
-// @Param desc body string true "Desc"
-// @Param content body string true "Content"
-// @Param created_by body string true "CreatedBy"
-// @Param state body int true "State"
+// @Param data body AddArticleForm true "data"
 // @Success 200 {object} app.Response
 // @Failure 500 {object} app.Response
 // @Router /api/v1/articles [post]
@@ -184,6 +186,8 @@ type EditArticleForm struct {
 	State         int    `json:"state" valid:"Range(0,1)"`
 }
 
+// @Tags Article
+// @Security ApiKeyAuth
 // @Summary Update article
 // @Produce  json
 // @Param id path int true "ID"
@@ -249,6 +253,8 @@ func EditArticle(c *gin.Context) {
 	appG.Response(http.StatusOK, e.SUCCESS, nil)
 }
 
+// @Tags Article
+// @Security ApiKeyAuth
 // @Summary Delete article
 // @Produce  json
 // @Param id path int true "ID"

@@ -3,9 +3,9 @@ package v1
 import (
 	"net/http"
 
-	"github.com/unknwon/com"
 	"github.com/astaxie/beego/validation"
 	"github.com/gin-gonic/gin"
+	"github.com/unknwon/com"
 
 	"github.com/EDDYCJY/go-gin-example/pkg/app"
 	"github.com/EDDYCJY/go-gin-example/pkg/e"
@@ -16,6 +16,8 @@ import (
 	"github.com/EDDYCJY/go-gin-example/service/tag_service"
 )
 
+// @Tags Tags
+// @Security ApiKeyAuth
 // @Summary Get multiple article tags
 // @Produce  json
 // @Param name query string false "Name"
@@ -61,11 +63,14 @@ type AddTagForm struct {
 	State     int    `form:"state" valid:"Range(0,1)"`
 }
 
+// @Tags Tags
+// @Security ApiKeyAuth
 // @Summary Add article tag
+// @Accept  application/x-www-form-urlencoded
 // @Produce  json
-// @Param name body string true "Name"
-// @Param state body int false "State"
-// @Param created_by body int false "CreatedBy"
+// @Param name formData string true "name"
+// @Param created_by formData string true "created_by"
+// @Param state formData string true "state"
 // @Success 200 {object} app.Response
 // @Failure 500 {object} app.Response
 // @Router /api/v1/tags [post]
@@ -112,6 +117,8 @@ type EditTagForm struct {
 	State      int    `form:"state" valid:"Range(0,1)"`
 }
 
+// @Tags Tags
+// @Security ApiKeyAuth
 // @Summary Update article tag
 // @Produce  json
 // @Param id path int true "ID"
@@ -160,6 +167,8 @@ func EditTag(c *gin.Context) {
 	appG.Response(http.StatusOK, e.SUCCESS, nil)
 }
 
+// @Tags Tags
+// @Security ApiKeyAuth
 // @Summary Delete article tag
 // @Produce  json
 // @Param id path int true "ID"
@@ -197,6 +206,8 @@ func DeleteTag(c *gin.Context) {
 	appG.Response(http.StatusOK, e.SUCCESS, nil)
 }
 
+// @Tags Tags
+// @Security ApiKeyAuth
 // @Summary Export article tag
 // @Produce  json
 // @Param name body string false "Name"
@@ -229,9 +240,12 @@ func ExportTag(c *gin.Context) {
 	})
 }
 
+// @Tags Tags
+// @Security ApiKeyAuth
 // @Summary Import article tag
+// @Security ApiKeyAuth
 // @Produce  json
-// @Param file body file true "Excel File"
+// @Param fileZip formData file true "Excel File"
 // @Success 200 {object} app.Response
 // @Failure 500 {object} app.Response
 // @Router /api/v1/tags/import [post]

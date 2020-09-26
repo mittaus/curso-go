@@ -8,6 +8,23 @@ definitions:
       msg:
         type: string
     type: object
+  v1.AddArticleForm:
+    properties:
+      content:
+        type: string
+      cover_image_url:
+        type: string
+      created_by:
+        type: string
+      desc:
+        type: string
+      state:
+        type: integer
+      tag_id:
+        type: integer
+      title:
+        type: string
+    type: object
 info:
   contact: {}
   description: An example of gin
@@ -47,45 +64,21 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/app.Response'
+      security:
+      - ApiKeyAuth: []
       summary: Get multiple articles
+      tags:
+      - Article
     post:
+      consumes:
+      - application/json
       parameters:
-      - description: TagID
+      - description: data
         in: body
-        name: tag_id
+        name: data
         required: true
         schema:
-          type: integer
-      - description: Title
-        in: body
-        name: title
-        required: true
-        schema:
-          type: string
-      - description: Desc
-        in: body
-        name: desc
-        required: true
-        schema:
-          type: string
-      - description: Content
-        in: body
-        name: content
-        required: true
-        schema:
-          type: string
-      - description: CreatedBy
-        in: body
-        name: created_by
-        required: true
-        schema:
-          type: string
-      - description: State
-        in: body
-        name: state
-        required: true
-        schema:
-          type: integer
+          $ref: '#/definitions/v1.AddArticleForm'
       produces:
       - application/json
       responses:
@@ -97,7 +90,11 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/app.Response'
+      security:
+      - ApiKeyAuth: []
       summary: Add article
+      tags:
+      - Article
   /api/v1/articles/{id}:
     delete:
       parameters:
@@ -117,7 +114,11 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/app.Response'
+      security:
+      - ApiKeyAuth: []
       summary: Delete article
+      tags:
+      - Article
     get:
       parameters:
       - description: ID
@@ -136,7 +137,11 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/app.Response'
+      security:
+      - ApiKeyAuth: []
       summary: Get a single article
+      tags:
+      - Article
     put:
       parameters:
       - description: ID
@@ -186,7 +191,11 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/app.Response'
+      security:
+      - ApiKeyAuth: []
       summary: Update article
+      tags:
+      - Article
   /api/v1/tags:
     get:
       parameters:
@@ -209,25 +218,30 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/app.Response'
+      security:
+      - ApiKeyAuth: []
       summary: Get multiple article tags
+      tags:
+      - Tags
     post:
+      consumes:
+      - application/x-www-form-urlencoded
       parameters:
-      - description: Name
-        in: body
+      - description: name
+        in: formData
         name: name
         required: true
-        schema:
-          type: string
-      - description: State
-        in: body
-        name: state
-        schema:
-          type: integer
-      - description: CreatedBy
-        in: body
+        type: string
+      - description: created_by
+        in: formData
         name: created_by
-        schema:
-          type: integer
+        required: true
+        type: string
+      - description: state
+        in: formData
+        name: state
+        required: true
+        type: string
       produces:
       - application/json
       responses:
@@ -239,7 +253,11 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/app.Response'
+      security:
+      - ApiKeyAuth: []
       summary: Add article tag
+      tags:
+      - Tags
   /api/v1/tags/{id}:
     delete:
       parameters:
@@ -259,7 +277,11 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/app.Response'
+      security:
+      - ApiKeyAuth: []
       summary: Delete article tag
+      tags:
+      - Tags
     put:
       parameters:
       - description: ID
@@ -295,7 +317,11 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/app.Response'
+      security:
+      - ApiKeyAuth: []
       summary: Update article tag
+      tags:
+      - Tags
   /api/v1/tags/export:
     post:
       parameters:
@@ -320,13 +346,17 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/app.Response'
+      security:
+      - ApiKeyAuth: []
       summary: Export article tag
+      tags:
+      - Tags
   /api/v1/tags/import:
     post:
       parameters:
-      - description: Image File
+      - description: Excel File
         in: formData
-        name: image
+        name: fileZip
         required: true
         type: file
       produces:
@@ -340,11 +370,16 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/app.Response'
-      summary: Import Image
+      security:
+      - ApiKeyAuth: []
+      - ApiKeyAuth: []
+      summary: Import article tag
+      tags:
+      - Tags
   /auth:
     get:
       parameters:
-      - description: userName
+      - description: username
         in: query
         name: username
         required: true
@@ -366,4 +401,11 @@ paths:
           schema:
             $ref: '#/definitions/app.Response'
       summary: Get Auth
+      tags:
+      - Security
+securityDefinitions:
+  ApiKeyAuth:
+    in: header
+    name: token
+    type: apiKey
 swagger: "2.0"

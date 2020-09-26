@@ -11,6 +11,7 @@ import (
 	"github.com/EDDYCJY/go-gin-example/pkg/upload"
 )
 
+// @Tags Tags
 // @Summary Import Image
 // @Produce  json
 // @Param image formData file true "Image File"

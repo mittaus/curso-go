@@ -14,8 +14,16 @@
     "paths": {
         "/api/v1/articles": {
             "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
                 "produces": [
                     "application/json"
+                ],
+                "tags": [
+                    "Article"
                 ],
                 "summary": "Get multiple articles",
                 "parameters": [
@@ -60,63 +68,29 @@
                 }
             },
             "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
                 "produces": [
                     "application/json"
+                ],
+                "tags": [
+                    "Article"
                 ],
                 "summary": "Add article",
                 "parameters": [
                     {
-                        "description": "TagID",
-                        "name": "tag_id",
+                        "description": "data",
+                        "name": "data",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "description": "Title",
-                        "name": "title",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "description": "Desc",
-                        "name": "desc",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "description": "Content",
-                        "name": "content",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "description": "CreatedBy",
-                        "name": "created_by",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "description": "State",
-                        "name": "state",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
+                            "$ref": "#/definitions/v1.AddArticleForm"
                         }
                     }
                 ],
@@ -138,8 +112,16 @@
         },
         "/api/v1/articles/{id}": {
             "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
                 "produces": [
                     "application/json"
+                ],
+                "tags": [
+                    "Article"
                 ],
                 "summary": "Get a single article",
                 "parameters": [
@@ -167,8 +149,16 @@
                 }
             },
             "put": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
                 "produces": [
                     "application/json"
+                ],
+                "tags": [
+                    "Article"
                 ],
                 "summary": "Update article",
                 "parameters": [
@@ -245,8 +235,16 @@
                 }
             },
             "delete": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
                 "produces": [
                     "application/json"
+                ],
+                "tags": [
+                    "Article"
                 ],
                 "summary": "Delete article",
                 "parameters": [
@@ -276,8 +274,16 @@
         },
         "/api/v1/tags": {
             "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
                 "produces": [
                     "application/json"
+                ],
+                "tags": [
+                    "Tags"
                 ],
                 "summary": "Get multiple article tags",
                 "parameters": [
@@ -310,35 +316,42 @@
                 }
             },
             "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
                 "produces": [
                     "application/json"
+                ],
+                "tags": [
+                    "Tags"
                 ],
                 "summary": "Add article tag",
                 "parameters": [
                     {
-                        "description": "Name",
+                        "type": "string",
+                        "description": "name",
                         "name": "name",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
+                        "in": "formData",
+                        "required": true
                     },
                     {
-                        "description": "State",
-                        "name": "state",
-                        "in": "body",
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "description": "CreatedBy",
+                        "type": "string",
+                        "description": "created_by",
                         "name": "created_by",
-                        "in": "body",
-                        "schema": {
-                            "type": "integer"
-                        }
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "state",
+                        "name": "state",
+                        "in": "formData",
+                        "required": true
                     }
                 ],
                 "responses": {
@@ -359,8 +372,16 @@
         },
         "/api/v1/tags/export": {
             "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
                 "produces": [
                     "application/json"
+                ],
+                "tags": [
+                    "Tags"
                 ],
                 "summary": "Export article tag",
                 "parameters": [
@@ -399,15 +420,26 @@
         },
         "/api/v1/tags/import": {
             "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    },
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
                 "produces": [
                     "application/json"
                 ],
-                "summary": "Import Image",
+                "tags": [
+                    "Tags"
+                ],
+                "summary": "Import article tag",
                 "parameters": [
                     {
                         "type": "file",
-                        "description": "Image File",
-                        "name": "image",
+                        "description": "Excel File",
+                        "name": "fileZip",
                         "in": "formData",
                         "required": true
                     }
@@ -430,8 +462,16 @@
         },
         "/api/v1/tags/{id}": {
             "put": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
                 "produces": [
                     "application/json"
+                ],
+                "tags": [
+                    "Tags"
                 ],
                 "summary": "Update article tag",
                 "parameters": [
@@ -485,8 +525,16 @@
                 }
             },
             "delete": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
                 "produces": [
                     "application/json"
+                ],
+                "tags": [
+                    "Tags"
                 ],
                 "summary": "Delete article tag",
                 "parameters": [
@@ -519,11 +567,14 @@
                 "produces": [
                     "application/json"
                 ],
+                "tags": [
+                    "Security"
+                ],
                 "summary": "Get Auth",
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "userName",
+                        "description": "username",
                         "name": "username",
                         "in": "query",
                         "required": true
@@ -567,6 +618,39 @@
                     "type": "string"
                 }
             }
+        },
+        "v1.AddArticleForm": {
+            "type": "object",
+            "properties": {
+                "content": {
+                    "type": "string"
+                },
+                "cover_image_url": {
+                    "type": "string"
+                },
+                "created_by": {
+                    "type": "string"
+                },
+                "desc": {
+                    "type": "string"
+                },
+                "state": {
+                    "type": "integer"
+                },
+                "tag_id": {
+                    "type": "integer"
+                },
+                "title": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "securityDefinitions": {
+        "ApiKeyAuth": {
+            "type": "apiKey",
+            "name": "token",
+            "in": "header"
         }
     }
 }
