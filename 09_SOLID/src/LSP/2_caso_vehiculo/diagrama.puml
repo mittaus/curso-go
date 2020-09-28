@@ -1,0 +1,31 @@
+@startuml
+namespace main {
+    class Bike << (S,Aquamarine) >> {
+        - getWheels() int
+        - getMaxSpeed() int
+
+    }
+    class Car << (S,Aquamarine) >> {
+        - getWheels() int
+        - getMaxSpeed() int
+
+    }
+    interface IVehicle  {
+        - getVehicleIdentifier() string
+        - getWheels() int
+        - getMaxSpeed() int
+
+    }
+    class Vehicle << (S,Aquamarine) >> {
+        - name string
+
+        - getVehicleIdentifier() string
+
+    }
+}
+"main.Vehicle" *-- "main.Bike"
+"main.Vehicle" *-- "main.Car"
+
+
+
+@enduml

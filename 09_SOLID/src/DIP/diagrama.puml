@@ -1,0 +1,34 @@
+@startuml
+namespace DIP {
+    interface IUserRepository  {
+        + Search(id int) User
+
+    }
+    interface IUserService  {
+        + Search(id int) User
+
+    }
+    class User << (S,Aquamarine) >> {
+        + ID uint
+        + Name string
+
+    }
+    class UserRepository << (S,Aquamarine) >> {
+        - listaUsuarios []User
+
+        + Search(id uint) User
+
+    }
+    class UserService << (S,Aquamarine) >> {
+        - repository *UserRepository
+
+        + Search(id uint) User
+
+    }
+}
+
+
+"DIP.UserRepository" o-- "DIP.User"
+"DIP.UserService" o-- "DIP.UserRepository"
+
+@enduml

@@ -1,0 +1,78 @@
+@startuml
+namespace AreaCalculator {
+    class AreaCalculator << (S,Aquamarine) >> {
+        - shapes []Shapes.ShapeInterface
+
+        + AddShape(si Shapes.ShapeInterface) 
+        + GetShapesArea() AreaResult
+
+    }
+    class AreaCalculator.AreaResult << (T, #FF7700) >>  {
+    }
+    class CalculatorOutputter << (S,Aquamarine) >> {
+        + JSON(result AreaResult) []byte
+
+    }
+}
+
+
+"AreaCalculator.AreaCalculator" o-- "Shapes.ShapeInterface"
+
+namespace Shapes {
+    class Circle << (S,Aquamarine) >> {
+        - radius float64
+
+        + GetRadius() float64
+        + Make(name string) 
+        + SetHeight(h float64) 
+        + SetWidth(w float64) 
+        + SetRadius(s float64) 
+        + CalcArea() float64
+
+    }
+    class Rectangle << (S,Aquamarine) >> {
+        - width float64
+        - height float64
+
+        + GetW_and_H() (float64, float64)
+        + Make(name string) 
+        + SetHeight(h float64) 
+        + SetWidth(w float64) 
+        + SetRadius(s float64) 
+        + CalcArea() float64
+
+    }
+    class Shape << (S,Aquamarine) >> {
+        - name string
+
+        + GetName() string
+
+    }
+    interface ShapeInterface  {
+        + CalcArea() float64
+        + GetName() string
+        + SetWidth( float64) 
+        + SetHeight( float64) 
+        + SetRadius( float64) 
+
+    }
+    class Square << (S,Aquamarine) >> {
+        - height float64
+
+        + GetHeight() float64
+        + Make(name string) 
+        + SetHeight(h float64) 
+        + SetWidth(w float64) 
+        + SetRadius(s float64) 
+        + CalcArea() float64
+
+    }
+}
+"Shapes.Shape" *-- "Shapes.Circle"
+"Shapes.Shape" *-- "Shapes.Rectangle"
+"Shapes.Shape" *-- "Shapes.Square"
+
+
+
+"__builtin__.<font color=blue>map</font>[string]float64" #.. "AreaCalculator.AreaResult"
+@enduml

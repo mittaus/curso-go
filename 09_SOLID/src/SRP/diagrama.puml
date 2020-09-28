@@ -1,0 +1,35 @@
+@startuml
+namespace SRP {
+    interface IReportFormat  {
+        - formatJSON(r *ReportGood) ([]byte, error)
+
+    }
+    class ReportBad << (S,Aquamarine) >> {
+        + Title string
+        + Date string
+
+        - getTitle() string
+        - getDate() string
+        - getContents() (string, string)
+        - formatJSON() ([]byte, error)
+
+    }
+    class ReportFormat << (S,Aquamarine) >> {
+        - formatJSON(r *ReportGood) ([]byte, error)
+
+    }
+    class ReportGood << (S,Aquamarine) >> {
+        + Title string
+        + Date string
+
+        - getTitle() string
+        - getDate() string
+        - getContents() (string, string)
+
+    }
+}
+
+"SRP.IReportFormat" <|-- "SRP.ReportFormat"
+
+
+@enduml
