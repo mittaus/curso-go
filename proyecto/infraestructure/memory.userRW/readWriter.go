@@ -19,7 +19,7 @@ type rw struct {
 	//TODO : ADD a password hasher here
 }
 
-func New() application.UserRW {
+func New() domain.UserRW {
 	rw := rw{
 		store: &sync.Map{},
 	}

@@ -31,7 +31,7 @@ func (s *MySuite) TestSubtractWithGocheck(c *C) {
 }
 
 func (s *MySuite) TestMultiplyWithGocheck(c *C) {
-	result := Multiply(5, 6)
+	result := Multiply(5, 610)
 	c.Assert(result, Equals, 30)
 }
 

@@ -33,8 +33,8 @@ var rick = domain.User{
 }
 
 var jane = domain.User{
-	Name:      "johnjacob",
-	Email:     "joe@what.com",
+	Name:      "jane",
+	Email:     "jane@what.com",
 	Bio:       nil,
 	ImageLink: &janeImg,
 	Password:  "password",

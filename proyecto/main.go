@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"os"
 
 	"example.com/mittaus/ddd-example/application"
 	"example.com/mittaus/ddd-example/config"
@@ -31,6 +32,7 @@ var rootCmd = &cobra.Command{
 	Use:   "go-realworld-clean",
 	Short: "Runs the server",
 	Run: func(cmd *cobra.Command, args []string) {
+		fmt.Printf("Build: %s\nVersion: %s\nargs:%s\n", Build, Version, args)
 		run()
 	},
 }
@@ -57,6 +59,8 @@ func main() {
 }
 
 func run() {
+	puerto := os.Getenv("server.port")
+	fmt.Println("puerto", puerto)
 	ginServer := config.NewServer(
 		viper.GetInt("server.port"),
 		config.DebugMode,

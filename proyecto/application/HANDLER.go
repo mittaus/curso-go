@@ -4,6 +4,7 @@ import (
 	"log"
 
 	"example.com/mittaus/ddd-example/domain"
+	. "example.com/mittaus/ddd-example/domain"
 )
 
 type Handler interface {

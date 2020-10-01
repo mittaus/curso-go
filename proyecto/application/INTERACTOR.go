@@ -2,6 +2,7 @@ package application
 
 import (
 	"example.com/mittaus/ddd-example/domain"
+	. "example.com/mittaus/ddd-example/domain"
 )
 
 // interactor : the struct that will have as properties all the IMPLEMENTED interfaces
@@ -26,22 +27,6 @@ type Logger interface {
 type AuthHandler interface {
 	GenUserToken(userName string) (token string, err error)
 	GetUserName(token string) (userName string, err error)
-}
-
-type UserRW interface {
-	Create(username, email, password string) (*domain.User, error)
-	GetByName(userName string) (*domain.User, error)
-	GetByEmailAndPassword(email, password string) (*domain.User, error)
-	Save(user domain.User) error
-}
-
-type ArticleRW interface {
-	Create(domain.Article) (*domain.Article, error)
-	Save(domain.Article) (*domain.Article, error)
-	GetBySlug(slug string) (*domain.Article, error)
-	GetByAuthorsNameOrderedByMostRecentAsc(usernames []string) ([]domain.Article, error)
-	GetRecentFiltered(filters []domain.ArticleFilter) ([]domain.Article, error)
-	Delete(slug string) error
 }
 
 type CommentRW interface {

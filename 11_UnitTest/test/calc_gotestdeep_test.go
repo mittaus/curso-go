@@ -8,7 +8,7 @@ import (
 )
 
 func TestAddWithGoTestDeep(t *testing.T) {
-	result := Add(1, 2)
+	result := Add(1, 4)
 	CmpNotZero(t, result)
 	CmpDeeply(t, &result, Ptr(3))
 	CmpDeeply(t, result, Code(func(r int) (bool, string) {

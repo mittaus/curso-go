@@ -12,7 +12,11 @@ func TestNameStandard(t *testing.T) {
 }
 
 func TestAddWithTestingPackage(t *testing.T) {
-	result := Add(1, 2)
+
+	operador1 := 1
+	operador2 := 4
+
+	result := Add(operador1, operador2)
 
 	if result != 3 {
 		t.Errorf("El resultado fue incorrecto, obtuvo: %d, se quería: %d.", result, 3)

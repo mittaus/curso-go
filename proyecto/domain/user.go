@@ -12,8 +12,8 @@ type User struct {
 	Password  string
 	Bio       *string
 	ImageLink *string
-	FollowIDs []string
-	Favorites []Article
+	FollowIDs []string `gorm:"-"`
+	// Favorites []Article
 	CreatedAt time.Time
 	UpdatedAt time.Time
 }

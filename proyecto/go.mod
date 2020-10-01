@@ -15,6 +15,12 @@ require (
 	github.com/spf13/cobra v1.0.0
 	github.com/spf13/viper v1.7.1
 	github.com/stretchr/testify v1.4.0
+	go.mongodb.org/mongo-driver v1.4.1
 	gopkg.in/go-playground/validator.v8 v8.18.2
 	gopkg.in/h2non/baloo.v3 v3.0.0
+	gorm.io/driver/mysql v1.0.2
+	gorm.io/driver/sqlserver v1.0.4
+	gorm.io/gorm v1.20.2
 )
+
+replace example.com/mittaus/ddd-example/domain => ./domain

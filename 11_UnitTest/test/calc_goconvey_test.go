@@ -10,7 +10,7 @@ import (
 func TestAddWithGoConvey(t *testing.T) {
 	Convey("Adding two numbers", t, func() {
 		x := 1
-		y := 2
+		y := 4
 
 		Convey("should produce the expected result", func() {
 			So(Add(x, y), ShouldEqual, 3)

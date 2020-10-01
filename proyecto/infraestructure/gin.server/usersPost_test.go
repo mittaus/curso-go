@@ -5,9 +5,9 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"example.com/mittaus/ddd-example/infraestructure/gin.server"
+	mock "example.com/mittaus/ddd-example/infraestructure/application.mock"
+	server "example.com/mittaus/ddd-example/infraestructure/gin.server"
 	jwt "example.com/mittaus/ddd-example/infraestructure/jwt.authHandler"
-	"example.com/mittaus/ddd-example/infraestructure/application.mock"
 	"example.com/mittaus/ddd-example/testData"
 	"github.com/gin-gonic/gin"
 	"github.com/golang/mock/gomock"
@@ -22,6 +22,7 @@ func TestUserPost_happyCase(t *testing.T) {
 
 	jane := testData.User("jane")
 	ucHandler := mock.NewMockHandler(mockCtrl)
+
 	ucHandler.EXPECT().
 		UserCreate(jane.Name, jane.Email, jane.Password).
 		Return(&jane, "authToken", nil).

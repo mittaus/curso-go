@@ -3,7 +3,7 @@ package application_test
 import (
 	"testing"
 
-	"example.com/mittaus/ddd-example/infraestructure/application.mock"
+	mock "example.com/mittaus/ddd-example/infraestructure/application.mock"
 	"example.com/mittaus/ddd-example/testData"
 	"github.com/golang/mock/gomock"
 	"github.com/stretchr/testify/assert"

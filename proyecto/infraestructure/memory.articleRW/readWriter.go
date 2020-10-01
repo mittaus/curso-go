@@ -9,15 +9,15 @@ import (
 
 	"log"
 
-	"example.com/mittaus/ddd-example/domain"
 	"example.com/mittaus/ddd-example/application"
+	"example.com/mittaus/ddd-example/domain"
 )
 
 type rw struct {
 	store *sync.Map
 }
 
-func New() application.ArticleRW {
+func New() domain.ArticleRW {
 	return rw{
 		store: &sync.Map{},
 	}
